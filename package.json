@@ -1,0 +1,27 @@
+{
+  "name": "fragments-ui",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Fragments UI testing web app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashwin-BN/fragments-ui.git"
+  },
+  "author": "Ashwin B N",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "parcel": "^2.13.3",
+    "buffer": "^6.0.3",
+    "process": "^0.11.10",
+    "punycode": "^1.4.1",
+    "querystring-es3": "^0.2.1"
+  },
+  "dependencies": {
+    "oidc-client-ts": "^3.1.0"
+  }
+}
