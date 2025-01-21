@@ -24,6 +24,10 @@ export async function signIn() {
   await userManager.signinRedirect();
 }
 
+// Create a sign-out function to log out the user
+export async function signOut() {
+  await userManager.signoutRedirect();
+}
 
 // Create a simplified view of the user, with an extra method for creating the auth headers
 function formatUser(user) {
