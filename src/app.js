@@ -1,8 +1,7 @@
 // src/app.js
 
 import { signIn, signOut, getUser } from './auth';
-import { getUserFragments } from './api';
-
+import { getUserFragments } from './api'
 async function init() {
   // Get our UI elements
   const userSection = document.querySelector('#user');
