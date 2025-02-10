@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html",
+    "lint": "eslint \"./src/**/*.js\"",
     "build": "parcel build"
   },
   "repository": {
@@ -15,7 +16,10 @@
   "author": "Ashwin B N",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@eslint/js": "^9.20.0",
     "buffer": "^6.0.3",
+    "eslint": "^9.20.0",
+    "globals": "^15.14.0",
     "parcel": "^2.13.3",
     "prettier": "3.5.0",
     "process": "^0.11.10",

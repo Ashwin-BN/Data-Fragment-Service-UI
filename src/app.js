@@ -17,12 +17,20 @@ async function init() {
   // See if we're signed in (i.e., we'll have a `user` object)
   const user = await getUser();
   if (!user) {
+    console.log('User not authenticated');
     return;
   }
-  // Do an authenticated request to the fragments API server and log the result
-  const userFragments = await getUserFragments(user);
 
-  // TODO: later in the course, we will show all the user's fragments in the HTML...
+  console.log('User authenticated:', user);
+
+  try {
+    const fragments = await getUserFragments(user);
+    console.log('User fragments:', fragments);
+    // Update UI with fragments data
+  } catch (error) {
+    console.error('Error fetching user fragments:', error);
+    // Handle error in UI
+  }
 
   // Update the UI to welcome the user
   userSection.hidden = false;
