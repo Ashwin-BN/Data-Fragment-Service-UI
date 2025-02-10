@@ -14,7 +14,7 @@ const cognitoAuthConfig = {
   automaticSilentRenew: false,
 };
 
-// Create a UserManager instance    
+// Create a UserManager instance
 const userManager = new UserManager({
   ...cognitoAuthConfig,
 });

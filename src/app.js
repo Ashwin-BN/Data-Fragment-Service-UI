@@ -34,6 +34,7 @@ async function init() {
 
   // Update the UI to welcome the user
   userSection.hidden = false;
+  userSection.classList.add('visible');
 
   // Show the user's username
   userSection.querySelector('.username').innerText = user.username;
