@@ -14,7 +14,7 @@ const cognitoAuthConfig = {
   automaticSilentRenew: false,
 };
 
-// Create a UserManager instance
+// Create a UserManager instance    
 const userManager = new UserManager({
   ...cognitoAuthConfig,
 });
@@ -22,11 +22,6 @@ const userManager = new UserManager({
 export async function signIn() {
   // Trigger a redirect to the Cognito auth page, so user can authenticate
   await userManager.signinRedirect();
-}
-
-// Create a sign-out function to log out the user
-export async function signOut() {
-  await userManager.signoutRedirect();
 }
 
 // Create a simplified view of the user, with an extra method for creating the auth headers
