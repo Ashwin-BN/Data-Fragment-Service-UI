@@ -4,7 +4,6 @@ import { getUserFragments, postUserFragment } from './api';
 
 async function init() {
   // Get our UI elements
-  const userSection = document.querySelector('#user');
   const loginBtn = document.querySelector('#login');
   const fragmentTypeSelect = document.querySelector('#fragmentType');
   const fragmentContent = document.querySelector('#fragmentContent');
