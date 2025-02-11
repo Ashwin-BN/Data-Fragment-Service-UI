@@ -11,7 +11,7 @@ const apiUrl = process.env.API_URL || 'http://localhost:8080';
 export async function getUserFragments(user) {
   console.log('Requesting user fragments data...');
   try {
-    const res = await fetch(`${apiUrl}/v1/fragments`, {
+    const res = await fetch(`${apiUrl}/v1/fragments?expand=1`, {
       // Generate headers with the proper Authorization bearer token to pass.
       // We are using the `authorizationHeaders()` helper method we defined
       // earlier, to automatically attach the user's ID token.
@@ -25,5 +25,59 @@ export async function getUserFragments(user) {
     return data;
   } catch (err) {
     console.error('Unable to call GET /v1/fragment', { err });
+  }
+}
+
+/**
+ * Given an authenticated user and fragment ID, request a specific fragment from the
+ * fragments microservice. We expect a user to have an `idToken` attached, so we can
+ * send that along with the request.
+ */
+export async function getUserFragmentById(user, fragmentId) {
+  console.log('Requesting fragment data by ID...', { fragmentId });
+  try {
+    const res = await fetch(`${apiUrl}/v1/fragments/${fragmentId}`, {
+      headers: user.authorizationHeaders(),
+    });
+
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+
+    const data = await res.json();
+    console.log('Successfully got fragment data', { data });
+    return data;
+  } catch (err) {
+    console.error('Unable to call GET /v1/fragments/:id', { err });
+    throw err;
+  }
+}
+
+/**
+ * Creates a new fragment in the fragments microservice. We expect a user to have an
+ * `idToken` attached, so we can send that along with the request.
+ */
+export async function postUserFragment(user, fragmentData) {
+  console.log('Creating new fragment...');
+  try {
+    const res = await fetch(`${apiUrl}/v1/fragments`, {
+      method: 'POST',
+      headers: {
+        ...user.authorizationHeaders(),
+        'Content-Type': fragmentData.type,
+      },
+      body: fragmentData.data,
+    });
+
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+
+    const data = await res.json();
+    console.log('Successfully created fragment', { data });
+    return data;
+  } catch (err) {
+    console.error('Unable to call POST /v1/fragments', { err });
+    throw err;
   }
 }

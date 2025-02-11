@@ -64,7 +64,7 @@ body {
 * @state hover - Hover interaction state
 * @state disabled - Disabled state
 */
-.btn-custom {
+.btn-primary {
   /* Gradient background for modern look */
   background: linear-gradient(145deg, #2d8cff, #1e6fff);
   border: none;
@@ -78,8 +78,25 @@ body {
   overflow: hidden;
 }
 
+/* New logout state - only changes color */
+.btn-danger {
+  /* Use same dimensions and styling as btn-primary */
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  /* New gradient for logout state */
+  background: linear-gradient(145deg, #ff4d4d, #ff1a1a);
+}
+
 /* Gradient animation effect on button hover */
-.btn-custom::before {
+.btn-primary::before,
+.btn-danger::before {
   content: '';
   position: absolute;
   top: 0;
@@ -97,18 +114,20 @@ body {
 }
 
 /* Interactive hover states for the custom button */
-.btn-custom:hover {
+.btn-primary:hover,
+.btn-danger:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(45, 140, 255, 0.3);
 }
 
 /* Gradient movement animation on button hover */
-.btn-custom:hover::before {
+.btn-primary:hover::before,
+.btn-danger:hover::before {
   transform: translateX(100%);
 }
 
 /* Styling for disabled button state */
-.btn-custom:disabled {
+.btn-primary:disabled {
   background: linear-gradient(145deg, #a8b6ff, #9aa6ff); /* Lighter gradient */
   cursor: not-allowed;
   transform: none;

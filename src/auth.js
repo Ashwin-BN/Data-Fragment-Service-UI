@@ -14,6 +14,13 @@ const cognitoAuthConfig = {
   automaticSilentRenew: false,
 };
 
+let signOutRedirect = async () => {
+  const clientId = process.env.AWS_COGNITO_CLIENT_ID;
+  const logoutUri = process.env.OAUTH_SIGN_OUT_REDIRECT_URL;
+  const cognitoDomain = process.env.AWS_COGNITO_DOMAIN;
+  window.location.href = `https://${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
+};
+
 // Create a UserManager instance
 const userManager = new UserManager({
   ...cognitoAuthConfig,
@@ -22,6 +29,11 @@ const userManager = new UserManager({
 export async function signIn() {
   // Trigger a redirect to the Cognito auth page, so user can authenticate
   await userManager.signinRedirect();
+}
+
+export async function signOut() {
+  await userManager.removeUser();
+  await signOutRedirect();
 }
 
 // Create a simplified view of the user, with an extra method for creating the auth headers
