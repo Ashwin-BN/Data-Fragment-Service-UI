@@ -1,157 +1,307 @@
-/* Base styles for the application container and layout */
+/* ========= Base Layout ========= */
 body {
-  /* Deep blue gradient background for a modern aesthetic */
   background: linear-gradient(135deg, #1a1f38 0%, #2a2f4a 100%);
-  min-height: 100vh; /* Ensure full viewport height */
+  min-height: 100vh;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
-/* Main content container with responsive constraints */
 .container {
-  max-width: 600px;
-  margin: 2rem auto;
+  max-width: 700px;
+  margin: 3rem auto;
   padding: 0 1rem;
 }
 
-/* Login interface with frosted glass effect and hover animations
-* @see https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter
-*/
-.login-section {
-  /* Frosted glass effect using backdrop-filter for modern UI */
-  background: rgba(255, 255, 255, 0.95); /* Slightly transparent white background */
-  backdrop-filter: blur(10px); /* Blur effect on background */
-  border-radius: 20px; /* Rounded corners for modern look */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  padding: 2.5rem; /* Internal spacing */
-  transform: translateY(0); /* Initial position */
-  transition: transform 0.3s ease; /* Smooth movement */
-  position: relative; /* Enable absolute positioning for children */
-  overflow: hidden; /* Hide button animation overflow */
+/* Fragment Card */
+.card {
+  border: none;
+  border-radius: 12px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-/* Interactive hover states for the login section */
-.login-section:hover {
+.card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* User information display with fade-in animation
-* @state hidden - Initially hidden
-* @state visible - Displayed after login
-*/
-.user-section {
-  /* Similar frosted glass effect as login section */
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  padding: 2.5rem;
-  margin-top: 2.5rem;
-  transition: all 0.4s ease;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* Active state for user section when displayed */
-.user-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Interactive button component with gradient background and hover effects
-* @state default - Normal button state
-* @state hover - Hover interaction state
-* @state disabled - Disabled state
-*/
-.btn-primary {
-  /* Gradient background for modern look */
-  background: linear-gradient(145deg, #2d8cff, #1e6fff);
-  border: none;
-  border-radius: 12px;
-  padding: 1rem 2rem;
-  color: white;
-  font-weight: 600;
-  font-size: 1.1rem;
+/* Hover Effect */
+.card-body {
   transition: all 0.3s ease;
+}
+
+.card:hover .card-body {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Fragments list hover cursor effect */
+.cursor-pointer {
   position: relative;
   overflow: hidden;
 }
 
-/* New logout state - only changes color */
-.btn-danger {
-  /* Use same dimensions and styling as btn-primary */
-  border: none;
-  border-radius: 12px;
-  padding: 1rem 2rem;
-  color: white;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  /* New gradient for logout state */
-  background: linear-gradient(145deg, #ff4d4d, #ff1a1a);
-}
-
-/* Gradient animation effect on button hover */
-.btn-primary::before,
-.btn-danger::before {
+.cursor-pointer:hover::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    /* Horizontal gradient */ transparent,
-    /* Start transparent */ rgba(255, 255, 255, 0.2),
-    /* White with 20% opacity */ transparent
-  ); /* End transparent */
-  transform: translateX(-100%); /* Start off-screen left */
-  transition: transform 0.6s ease; /* Smooth movement */
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  animation: ripple 0.6s ease-out;
 }
 
-/* Interactive hover states for the custom button */
-.btn-primary:hover,
+@keyframes ripple {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* ========= Login Section ========= */
+.login-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+  padding: 3rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.login-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.18);
+}
+
+/* ========= User Section ========= */
+.user-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+  padding: 2rem;
+  margin-top: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+
+.user-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========= Buttons ========= */
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.6rem;
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Primary Button */
+.btn-primary {
+  background: linear-gradient(145deg, #2d8cff, #1e6fff);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(45, 140, 255, 0.3);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(100%);
+}
+
+/* Danger Button */
+.btn-danger {
+  background: linear-gradient(145deg, #ff4d4d, #ff1a1a);
+  color: white;
+}
+
 .btn-danger:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(45, 140, 255, 0.3);
+  box-shadow: 0 10px 25px rgba(255, 50, 50, 0.3);
 }
 
-/* Gradient movement animation on button hover */
-.btn-primary:hover::before,
+.btn-danger::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
 .btn-danger:hover::before {
   transform: translateX(100%);
 }
 
-/* Styling for disabled button state */
-.btn-primary:disabled {
-  background: linear-gradient(145deg, #a8b6ff, #9aa6ff); /* Lighter gradient */
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+/* Success Button */
+.btn-success {
+  background: linear-gradient(145deg, #28a745, #218838);
+  color: white;
 }
 
-/* Custom styling for username display */
+.btn-success:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+}
+
+.btn-success::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-success:hover::before {
+  transform: translateX(100%);
+}
+
+/* ========= Fragment Section ========= */
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+#fragmentType,
+textarea,
+input[type='file'] {
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+textarea::placeholder {
+  font-style: italic;
+  color: #999;
+}
+
+/* ========= Username ========= */
 .username {
-  color: #2d8cff; /* Match button gradient start color */
+  color: #2d8cff;
   font-weight: 600;
   font-size: 1.5rem;
 }
 
-/* Keyframe animation for gradient movement
-* @see https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes
-*/
-@keyframes gradient-move {
-  0% {
-    background-position: 0% 50%; /* Start position */
-  }
-  50% {
-    background-position: 100% 50%; /* Middle position */
-  }
-  100% {
-    background-position: 0% 50%; /* End position */
-  }
+/* ========= Modal Styles ========= */
+.modal-content {
+  border-radius: 16px;
+}
+
+.modal-header,
+.modal-footer {
+  background-color: #f8f9fa;
+  border-bottom: none;
+  border-top: none;
+  border-radius: 16px 16px 0 0;
+}
+
+.modal-footer {
+  border-radius: 0 0 16px 16px;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+/* ========= Fragment Content Preview ========= */
+.fragment-details-container {
+  padding: 1rem;
+}
+
+.metadata-section {
+  background-color: #f2f2f2;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.content-pre {
+  background-color: #212529;
+  color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 10px;
+  white-space: pre-wrap;
+  font-family: 'Courier New', Courier, monospace;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.image-container img {
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ========= Fragment Glows ========= */
+.text-fragment {
+  border-left: 4px solid var(--bs-primary);
+  box-shadow: 0 0 10px 2px rgba(45, 140, 255, 0.2);
+}
+
+.image-fragment {
+  border-left: 4px solid var(--bs-success);
+  box-shadow: 0 0 10px 2px rgba(40, 167, 69, 0.2);
+}
+
+.json-fragment {
+  border-left: 4px solid var(--bs-warning);
+  box-shadow: 0 0 10px 2px rgba(255, 193, 7, 0.2);
+}
+
+.markdown-fragment {
+  border-left: 4px solid var(--bs-info);
+  box-shadow: 0 0 10px 2px rgba(23, 162, 184, 0.2);
+}
+
+.html-fragment {
+  border-left: 4px solid var(--bs-danger);
+  box-shadow: 0 0 10px 2px rgba(220, 53, 69, 0.2);
+}
+
+.csv-fragment {
+  border-left: 4px solid #6c757d;
+  box-shadow: 0 0 10px 2px rgba(108, 117, 125, 0.2);
+}
+
+.yaml-fragment {
+  border-left: 4px solid #495057;
+  box-shadow: 0 0 10px 2px rgba(73, 80, 87, 0.2);
+}
+
+.avif-fragment,
+.gif-fragment,
+.jpeg-fragment,
+.png-fragment,
+.webp-fragment {
+  border-left: 4px solid var(--bs-success);
+  box-shadow: 0 0 10px 2px rgba(40, 167, 69, 0.2);
 }

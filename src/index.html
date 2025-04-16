@@ -34,20 +34,33 @@
           <label for="fragmentType" class="form-label">Fragment Type</label>
           <select id="fragmentType" class="form-select">
             <option value="text/plain">Plain Text</option>
-            <option value="text/plain; charset=utf-8">Plain Text(utf-8)</option>
             <option value="text/markdown">Markdown</option>
             <option value="text/html">HTML</option>
-            <option value="text/csv">csv</option>
-            <option value="application/json">json</option>
+            <option value="text/csv">CSV</option>
+            <option value="application/json">JSON</option>
+            <option value="application/yaml">YAML</option>
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">WebP</option>
+            <option value="image/avif">AVIF</option>
+            <option value="image/gif">GIF</option>
           </select>
         </div>
-        <div class="mb-3">
-          <label for="fragmentContent" class="form-label">Fragment Content</label>
-          <textarea id="fragmentContent" class="form-control" rows="5"
+        <label id="fragmentContent" for="fragmentContent" class="form-label">Fragment Content</label>
+        <!-- TEXT FRAGMENT INPUT -->
+        <div id="textInput" class="mb-3">
+          <textarea id="fragmentTextContent" class="form-control" rows="5"
             placeholder="Enter your fragment content here..."></textarea>
+        </div>
+
+        <!-- IMAGE FILE INPUT -->
+        <div id="imageInput" class="mb-3" hidden>
+          <input id="fragmentImageContent" type="file" accept="image/*" class="form-control" />
         </div>
         <button id="createFragment" class="btn btn-success btn-sm">Create Fragment</button>
       </div>
+
+      <br />
 
       <!-- Fragments List Section -->
       <div class="fragments-list-section mt-4">
@@ -58,7 +71,31 @@
       </div>
     </div>
   </div>
+
+  <!-- Fragment Detail Modal -->
+  <div class="modal fade" id="fragmentModal" tabindex="-1" aria-labelledby="fragmentModalLabel">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="fragmentModalLabel">Fragment Detail</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="fragmentModalBody">
+          <div id="fragmentContentArea" style="display: none;">
+            <textarea id="fragmentTextArea" class="form-control" rows="10" style="margin-top: 1rem;"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="updateFragmentBtn">Update Fragment</button>
+          <button type="button" class="btn btn-primary" id="convertFragmentBtn">Convert Type</button>
+          <button type="button" class="btn btn-danger" id="deleteFragmentBtn">Delete Fragment</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+
   <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
