@@ -1,92 +1,108 @@
-# Fragments UI
+# 🖥️ **Data Fragment Service UI**
 
-## Overview
-**Fragments UI** is a front-end web application designed for testing the **Fragments API**. It provides a simple interface to interact with the back-end service, enabling users to create and manage text fragments. The UI integrates with **AWS Cognito** for authentication and supports multiple API environments, including development (localhost) and production (AWS EC2).
+A comprehensive web application for managing data fragments, integrated with AWS Cognito for authentication and designed to seamlessly interact with the Fragments microservice. This UI facilitates CRUD operations for text and JSON fragments, supporting both local and cloud-hosted API backends.
 
-## Features
-- **User Authentication**: Utilizes AWS Cognito OAuth2 for secure user authentication and authorization.
-- **Dynamic API Configuration**: Supports switching between different back-end API servers (e.g., localhost for development, AWS EC2 for production).
-- **Fragment Management**: Allows users to create simple text fragments and store them on the Fragments API server.
-- **Bundler Setup**: Uses Parcel for efficient module bundling and front-end optimization.
-- **Development Tools**: Includes ESLint and Prettier for code quality enforcement.
+---
 
-## Prerequisites
-Ensure the following dependencies are installed before running the application:
-- **Node.js** (v16 or higher)
-- **npm** (v8 or higher)
-- Running instance if th Fragments API
+## 🌐 **Overview**
 
-## Installation
-Clone the repository and install dependencies:
-```sh
-git clone https://github.com/Ashwin-BN/fragments-ui.git
+Fragments UI is a front-end application that enables users to:
+
+- 🔐 Authenticate securely using AWS Cognito's OAuth2 Hosted UI.
+- 📦 Create, view, update, and delete text and JSON fragments.
+- 🔄 Interact with the Fragments API for seamless data storage and retrieval.
+- 🌍 Switch between development (localhost) and production (AWS EC2) environments effortlessly.
+
+---
+
+## 🚀 **Key Features**
+
+- **User Authentication:** Secure OAuth2-based login with AWS Cognito.
+- **Multi-format Fragment Support:** Manage both text and JSON data.
+- **Environment Switching:** Easily switch between local and cloud-hosted backends.
+- **CRUD Operations:** Complete support for creating, reading, updating, and deleting fragments.
+- **Responsive UI:** Built with Bootstrap 5 for sleek and accessible design.
+
+---
+
+## 🏗️ **Project Setup**
+
+1. **Clone the repository:**
+```bash
+git clone https://github.com/Ashwin-BN/Data-Fragment-Service-UI.git
 cd fragments-ui
+```
+
+2. **Install dependencies:**
+```bash
 npm install
 ```
 
-Create a `.env` file in the project root with the following variables:
-```sh
-# Fragments microservice API URL
-API_URL=<YOUR_API_URL>
-   
-# AWS Cognito Configuration
-AWS_COGNITO_POOL_ID=<YOUR_COGNITO_POOL_ID>
-AWS_COGNITO_CLIENT_ID=<YOUR_COGNITO_CLIENT_ID>
-   
-# OAuth Redirect URLs (Ensure consistency with Cognito settings)
-OAUTH_SIGN_IN_REDIRECT_URL=<YOUR_SIGN_IN_REDIRECT_URL>
-OAUTH_SIGN_OUT_REDIRECT_URL=<YOUR_SIGN_OUT_REDIRECT_URL>
-```
-
-## Usage
-
-- Start the development server:
-  ```sh
-  npm start
-  ```
-- Build the project:
-  ```sh
-  npm run build
-  ```
-- Lint the code:
-  ```sh
-  npm run lint
-  ```
-## Development & Testing
-To start the development server:
-```sh
+3. **Run the application:**
+```bash
 npm start
 ```
-This will launch the UI at `http://localhost:1234/`.
 
-To lint JavaScript files:
-```sh
-npm run lint
-```
-
-To build the application for production:
-```sh
+4. **Build for production:**
+```bash
 npm run build
 ```
 
-## Configuration
-The application can be configured to work with different API servers. Modify the configuration to switch between:
-- **Local Development**: `http://localhost:8080`
-- **AWS EC2 Deployment**: `http://ec2-54-197-161-231.compute-1.amazonaws.com:8080/`
+5. **Lint the project:**
+```bash
+npm run lint
+```
 
-## Authentication
-The UI integrates with **AWS Cognito Hosted UI** for authentication. Ensure that the Cognito setup is configured correctly to allow user login and token-based authorization.
+---
 
-## Completed Checklist for Front-End Web Testing
-- [x] **Development environment** configured (`npm`, `eslint`, `prettier`, scripts, etc.)
-- [x] **Bundler configured** (Parcel)
-- [x] **Basic web app functionality** for manually testing API server
-- [x] **AWS Cognito authentication** integrated
-- [x] **Dynamic API configuration** (localhost vs. EC2 instance)
-- [x] **Fragment creation and storage** functionality implemented
-- [x] **UI successfully communicating with EC2-hosted API**
+## 🔐 **Authentication**
 
-## Future Improvements
-- Enhance **UI elements** to display complete fragment details (currently only shows IDs).
-- Improve **API request handling** for better performance and reliability.
-- Implement **persistent storage** for fragments beyond the session lifecycle.
+- The application uses **AWS Cognito Hosted UI** for OAuth2-based authentication.
+- Users are securely logged in and authorized to perform CRUD operations on fragments.
+
+---
+
+## 📦 **Docker Deployment**
+
+1. **Build Docker image:**
+```bash
+docker build -t fragments-ui .
+```
+
+2. **Run Docker container:**
+```bash
+docker run -p 8080:80 fragments-ui
+```
+
+3. **Nginx serves the static files for production use.**
+
+---
+
+## 📋 **API Endpoints Consumed**
+
+| **Method** | **Endpoint**          | **Description**                 |
+|-------------|-----------------------|---------------------------------|
+| **GET**    | `/v1/fragments`       | List all user fragments         |
+| **POST**   | `/v1/fragments`       | Create a new fragment           |
+| **GET**    | `/v1/fragments/:id`   | Retrieve a specific fragment    |
+| **PUT**    | `/v1/fragments/:id`   | Update a specific fragment      |
+| **DELETE** | `/v1/fragments/:id`   | Delete a specific fragment      |
+
+---
+
+## 🎥 **Video Walkthrough**
+
+[![Fragments UI Walkthrough](https://img.youtube.com/vi/tE8bJZqzIfQ/0.jpg)](https://www.youtube.com/watch?v=tE8bJZqzIfQ)
+
+Click the image to watch the full walkthrough of the Fragments UI application.
+
+---
+
+## 👥 **Contributors**
+- **Ashwin B N** - _Developer_
+
+---
+
+## 🙌 **Acknowledgements**
+
+Special thanks to the **CCP555 Program** for guiding the development of this project.
